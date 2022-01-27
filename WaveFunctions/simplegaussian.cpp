@@ -4,6 +4,7 @@
 #include "wavefunction.h"
 #include "../system.h"
 #include "../particle.h"
+#include <valarray>
 
 SimpleGaussian::SimpleGaussian(System* system, double alpha) :
         WaveFunction(system) {
@@ -14,14 +15,20 @@ SimpleGaussian::SimpleGaussian(System* system, double alpha) :
 }
 
 double SimpleGaussian::evaluate(std::vector<class Particle*> particles) {
-    /* You need to implement a Gaussian wave function here. The positions of
-     * the particles are accessible through the particle[i].getPosition()
-     * function.
-     *
-     * For the actual expression, use exp(-alpha * r^2), with alpha being the
-     * (only) variational parameter.
-     */
-    return 0;
+    
+    double pos = 0;
+    int dimensions = particles.at(0)->getNumberOfDimensions();
+    
+    for(int i = 0; i < particles.size(); i++){
+        
+        std::vector<double> currentPositions = particles.at(i)->getPosition();
+
+        for(int j = 0; i < dimensions; j++){
+            pos = pos + currentPositions.at(j)*currentPositions.at(j);
+        }
+    }    
+
+    return exp(pos);
 }
 
 double SimpleGaussian::computeDoubleDerivative(std::vector<class Particle*> particles) {
