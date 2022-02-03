@@ -36,3 +36,6 @@ build
 
 # Ignore default executable
 vmc
+
+#VSCode specific
+*.json
