@@ -40,5 +40,20 @@ double SimpleGaussian::computeDoubleDerivative(std::vector<class Particle*> part
      * This quantity is needed to compute the (local) energy (consider the
      * Schrödinger equation to see how the two are related).
      */
-    return 0;
+
+    //Need the sum of r_i^2 to calculate second derivative
+    double sum_pos_squared = 0;
+    int dimensions = particles.at(0)->getNumberOfDimensions();
+
+    for(int i = 0; i < particles.size(); i++){
+        
+        std::vector<double> currentPositions = particles.at(i)->getPosition();
+
+        for(int j = 0; i < dimensions; j++){
+            sum_pos_squared = sum_pos_squared + currentPositions.at(j)*currentPositions.at(j);
+        }
+    }   
+
+    //Return the analytical expression psi_T * 2a(2a*sum r_i^2 - 1)
+    return exp(alpha*sum_pos_squared) * 2*alpha * (2*alpha*sum_pos_squared - 1));
 }
