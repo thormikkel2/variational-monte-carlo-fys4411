@@ -55,5 +55,5 @@ double SimpleGaussian::computeDoubleDerivative(std::vector<class Particle*> part
     }   
 
     //Return the analytical expression psi_T * 2a(2a*sum r_i^2 - 1)
-    return exp(alpha*sum_pos_squared) * 2*alpha * (2*alpha*sum_pos_squared - 1));
+    return exp(alpha*sum_pos_squared) * 2*alpha * (2*alpha*sum_pos_squared - 1);
 }
