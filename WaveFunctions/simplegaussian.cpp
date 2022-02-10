@@ -43,6 +43,7 @@ double SimpleGaussian::computeDoubleDerivative(std::vector<class Particle*> part
 
     //Need the sum of r_i^2 to calculate second derivative
     double sum_pos_squared = 0;
+    double alpha = m_parameters.at(0);
     int dimensions = particles.at(0)->getNumberOfDimensions();
 
     for(int i = 0; i < particles.size(); i++){
